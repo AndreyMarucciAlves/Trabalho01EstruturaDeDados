@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ListaSimples implements ListaOperacoes {
     String[] lista;
 
@@ -179,9 +181,7 @@ public class ListaSimples implements ListaOperacoes {
      */
     @Override
     public void limpar() {
-        for (int i = 0; i < this.lista.length; i++) {
-            this.lista[i] = null;
-        }
+        Arrays.fill(this.lista, null);
     }
 
     /**
