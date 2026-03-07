@@ -1,14 +1,14 @@
 public class ListaSimples implements ListaOperacoes {
     private int tamanho;
-    private Integer lista [];
+    private String lista [];
 
     public ListaSimples(int tamanhoDaLista) {
         this.tamanho = tamanhoDaLista;
-        lista = new Integer[tamanhoDaLista];
+        lista = new String[tamanhoDaLista];
         System.out.println("A lista foi criada com sucesso! Seu tamanho é igual a:" + tamanhoDaLista);
     }
 
-    public void inserirElemento(int elemento) {
+    public void inserirElemento(String elemento) {
         for (int i = 0; i < this.tamanho ; i++) {
             if(posicaoEstaVazia(i)) {
                 this.lista[i] = elemento;
@@ -38,16 +38,6 @@ public class ListaSimples implements ListaOperacoes {
         }
     }
 
-    public void removerPorIndice(int indice) {
-        if(verificarIntervalo(indice)) {
-            if(posicaoEstaVazia(indice)) {
-                System.out.println("A posição informada já está vazia.");
-            } else {
-                this.lista[indice] = null;
-            }
-        }
-    }
-
     public boolean verificarIntervalo(int indice) {
         if(indice >= 0 && indice <= this.tamanho-1) {
             return true;
@@ -57,7 +47,7 @@ public class ListaSimples implements ListaOperacoes {
         }
     }
 
-    public boolean buscaElemento(int elemento) {
+    public boolean buscaElemento(String elemento) {
         for (int i = 0; i < this.tamanho; i++) {
             if(this.lista[i] == elemento) {
                 System.out.println("O elemento " + elemento + " existe na lista, no índice " + (i+1));
@@ -68,7 +58,7 @@ public class ListaSimples implements ListaOperacoes {
         return false;
     }
 
-    public void editarPorIndice(int indice, int elemento) {
+    public void editarPorIndice(int indice, String elemento) {
         if(verificarIntervalo(indice)) {
             if(posicaoEstaVazia(indice)) {
                 System.out.println("A posição informada já está vazia.");
@@ -98,10 +88,10 @@ public class ListaSimples implements ListaOperacoes {
         if(estaVazia()) {
             System.out.println("Não existem elementos para serem ordenados.");
         } else {
-            Integer aux;
+            String aux;
             for (int h = 0; h < this.tamanho; h++) {// 3
                 for (int i = 0; i < (this.tamanho - 1); i++) {// 2
-                    if(this.lista[i+1] != null &&this.lista[i] > this.lista[i+1]) {
+                    if(this.lista[i+1] != null &&this.lista[i].length() > this.lista[i+1].length()) {
                         aux = this.lista[i];
                         this.lista[i] = this.lista[i+1];
                         this.lista[i+1] = aux;
@@ -112,7 +102,7 @@ public class ListaSimples implements ListaOperacoes {
         }
     }
 
-    public void insereOrdenado(int elemento) {
+    public void insereOrdenado(String elemento) {
         ordenarCrescente();
         inserirElemento(elemento);
 
@@ -125,6 +115,13 @@ public class ListaSimples implements ListaOperacoes {
 
     @Override
     public int ultimoIndiceDe(String elemento) {
+        if(buscaElemento(elemento)){
+
+        }
+        int ultimoIndice;
+        for(int i=0; i<this.lista.length; i++){
+
+        }
         return 0;
     }
 
@@ -161,6 +158,19 @@ public class ListaSimples implements ListaOperacoes {
     @Override
     public boolean inserir(int indice, String elemento) {
         return false;
+    }
+
+    @Override
+    public String removerPorIndice(int indice) {
+        if(verificarIntervalo(indice)) {
+            if(posicaoEstaVazia(indice)) {
+                System.out.println("A posição informada já está vazia.");
+            } else {
+                this.lista[indice] = null;
+            }
+        }
+
+        return "";
     }
 
 }
