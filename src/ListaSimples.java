@@ -122,7 +122,8 @@ public class ListaSimples implements ListaOperacoes {
         return cont;
     }
 
-    /**Adiciona múltiplos elementos na lista
+    /**
+     * Adiciona múltiplos elementos na lista
      *
      * @param elementos Vetor de Strings contendo os elementos a serem adicionados.
      * @return quantidade de elementos que foram adicionados na lista
@@ -141,6 +142,7 @@ public class ListaSimples implements ListaOperacoes {
 
     /**
      * Obtém o elemento da lista com base no indice inserido.
+     *
      * @param indice Posição desejada.
      * @return null se a posição está vazia ou (maior ou menor) que o intervalo da lista. Elemento do indice se não.
      * @throws IllegalArgumentException se o índice for inválido (menor que zero ou fora do intervalo).
@@ -155,6 +157,7 @@ public class ListaSimples implements ListaOperacoes {
 
     /**
      * Insere um elemento na lista com base no indice inserido.
+     *
      * @param indice Posição onde o elemento será inserido.
      * @param elemento Elemento a ser inserido.
      * @return true se inserção aconteseu, se não false
@@ -174,7 +177,8 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     /**
-     * Remove um elemento da lista pelo indice
+     * Remove um elemento da lista pelo indice.
+     *
      * @param indice Posição do elemento a ser removido.
      * @return null se o indice está fora do intervalo da lista, o elemento removido caso não
      */
@@ -198,6 +202,7 @@ public class ListaSimples implements ListaOperacoes {
 
     /**
      * Procura a última incidência do elemento na lista.
+     *
      * @param elemento Elemento a ser buscado.
      * @return Última vez que aparece na lista, ou -1 se não aparece
      */
@@ -214,6 +219,7 @@ public class ListaSimples implements ListaOperacoes {
 
     /**
      * Conta o número de vezes que um elemento aparece na lista.
+     *
      * @param elemento Elemento a ser contado.
      * @return número de vezes que foi encontrado na lista.
      */
@@ -230,6 +236,7 @@ public class ListaSimples implements ListaOperacoes {
 
     /**
      * Substitui todas as ocorrências de um elemento na lista por outro elemento.
+     *
      * @param antigo Elemento que será substituído.
      * @param novo Novo valor que substituirá o antigo.
      * @return Quantidade total de substituições realizadas.
