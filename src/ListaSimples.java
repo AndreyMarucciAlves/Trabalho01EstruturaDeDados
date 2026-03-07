@@ -106,9 +106,21 @@ public class ListaSimples implements ListaOperacoes {
         }
     }
 
+    /**
+     * Remove todas as ocorrências de um elemento na lista.
+     *
+     * @param elemento Elemento que deverá ter todas as ocorrências removidas.
+     * @return quantidade de elementos removidos.
+     */
     @Override
     public int removerTodas(String elemento) {
-        return 0;
+        int quantidadeElementosRemovidos = 0;
+        for (String item : this.lista) {
+            if (item.equals(elemento)) {
+                removerElemento(elemento);
+            }
+        }
+        return quantidadeElementosRemovidos;
     }
 
     /**
