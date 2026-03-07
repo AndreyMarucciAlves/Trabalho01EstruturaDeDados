@@ -122,9 +122,21 @@ public class ListaSimples implements ListaOperacoes {
         return cont;
     }
 
+    /**Adiciona múltiplos elementos na lista
+     *
+     * @param elementos Vetor de Strings contendo os elementos a serem adicionados.
+     * @return quantidade de elementos que foram adicionados na lista
+     */
     @Override
     public int adicionarVarios(String[] elementos) {
-        return 0;
+        int elementosAdicionados = 0;
+        for(int i = 0; i < elementos.length; i++){
+            if(this.lista[i] == null){
+                elementosAdicionados++;
+                this.lista[i] = elementos[i];
+            }
+        }
+        return elementosAdicionados;
     }
 
     /**
