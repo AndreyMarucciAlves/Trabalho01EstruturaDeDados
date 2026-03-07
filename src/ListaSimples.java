@@ -55,7 +55,7 @@ public class ListaSimples implements ListaOperacoes {
 
     public boolean buscaElemento(String elemento) {
         for (int i = 0; i < this.tamanho; i++) {
-            if(this.lista[i] == elemento) {
+            if(this.lista[i].equals(elemento)) {
                 System.out.println("O elemento " + elemento + " existe na lista, no índice " + (i+1));
                 return true;
             }
