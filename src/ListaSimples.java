@@ -26,10 +26,7 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     public boolean posicaoEstaVazia(int posicao) {
-        if (this.lista[posicao] == null) {
-            return true;
-        }
-        return false;
+        return this.lista[posicao] == null;
     }
 
     /**
