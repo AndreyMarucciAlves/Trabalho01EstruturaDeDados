@@ -111,11 +111,16 @@ public class ListaSimples implements ListaOperacoes {
         return 0;
     }
 
+    /**
+     * Conta os elementos existentes na lista desconsiderando elementos iguais a null
+     *
+     * @return número de elementos existentes na lista
+     */
     @Override
     public int contar() {
         int cont = 0;
-        for (int i = 0; i < this.lista.length; i++) {
-            if (this.lista[i] != null) {
+        for (String item : this.lista) {
+            if (item != null) {
                 cont++;
             }
         }
