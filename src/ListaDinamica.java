@@ -20,11 +20,7 @@ public class ListaDinamica implements ListaOperacoes{
     }
 
     private boolean existeInicio() {
-        if(this.inicio.getConteudo() == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return this.inicio.getConteudo() != null;
     }
 
     public void exibirElementos() {
