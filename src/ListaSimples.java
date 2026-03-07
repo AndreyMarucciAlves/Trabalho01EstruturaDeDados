@@ -114,6 +114,19 @@ public class ListaSimples implements ListaOperacoes {
 
     }
 
+    /**
+     * Método que desloca os itens para direita
+     *
+     * @param indice será o ponto final do for
+     */
+    private void deslocarParaDireita(int indice){
+
+        for(int i = this.lista.length -1; i > indice;i--){
+            this.lista[i] = this.lista[i-1];
+        }
+
+    }
+
     @Override
     public void limpar() {
 
@@ -192,19 +205,6 @@ public class ListaSimples implements ListaOperacoes {
 
         lista[indice] = elemento;
         return true;
-    }
-
-    /**
-     * Método que desloca os itens para direita
-     *
-     * @param indice será o ponto final do for
-     */
-    private void deslocarParaDireita(int indice){
-
-        for(int i = this.lista.length -1; i > indice;i--){
-            this.lista[i] = this.lista[i-1];
-        }
-
     }
 
     @Override
