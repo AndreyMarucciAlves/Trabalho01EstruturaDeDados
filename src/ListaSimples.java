@@ -5,7 +5,7 @@ public class ListaSimples implements ListaOperacoes {
     public ListaSimples(int tamanhoDaLista) {
         this.tamanho = tamanhoDaLista;
         lista = new String[tamanhoDaLista];
-        System.out.println("A lista foi criada com sucesso! Seu tamanho é igual a:" + tamanhoDaLista);
+        System.out.println("A lista foi criada com sucesso! Seu tamanho é igual a: " + tamanhoDaLista);
     }
 
     public void inserirElemento(String elemento) {
@@ -181,18 +181,30 @@ public class ListaSimples implements ListaOperacoes {
         if(posicaoEstaVazia(indice)){
             return false;
         }
-        if(){
-
-        }
-        String[] listaAux = new String[lista.length];
-        for(int i=0; i<this.lista.length; i++){
-            if(i == indice){
-
-            } else {
-                listaAux[i] = this.lista[i];
+        int pontoDePartida = 0;
+        String[] listaAux1 = new String[this.lista.length+1];
+        String[] listaAux2 = new String[this.lista.length+1];
+        if(estaCheio()){
+            for(int i=0; i<this.lista.length+1; i++){
+                 if(i == indice){
+                    listaAux2 = listaAux1;
+                    listaAux2[i] = elemento;
+                    pontoDePartida = i;
+                    break;
+                } else {
+                    listaAux1[i] = this.lista[i];
+                }
             }
+            for(int i = pontoDePartida; i < this.lista.length; i++){
+                listaAux2[i+1] = this.lista[i];
+            }
+            this.tamanho ++ ;
+            this.lista = listaAux2;
+            return true;
+        } else {
+
         }
-        this.lista[indice] = elemento;
+
         return false;
     }
 
