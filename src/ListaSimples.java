@@ -25,19 +25,6 @@ public class ListaSimples implements ListaOperacoes {
         return this.lista[posicao] == null;
     }
 
-    /**
-     * Verifica se a lista está cheia.
-     * @return true se está cheia, false se não está.
-     */
-    private boolean estaCheio(){
-        for (String item : this.lista) {
-            if (item == null) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public void percorrerElementos() {
         for (int i = 0; i < this.tamanho; i++) {
             System.out.println(this.lista[i]);
@@ -115,6 +102,19 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     /**
+     * Verifica se a lista está cheia.
+     * @return true se está cheia, false se não está.
+     */
+    private boolean estaCheio(){
+        for (String item : this.lista) {
+            if (item == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Método que desloca os itens para direita
      *
      * @param indice será o ponto final do for
@@ -144,7 +144,7 @@ public class ListaSimples implements ListaOperacoes {
     public int ultimoIndiceDe(String elemento) {
 
         for(int i = this.tamanho; i >=0;i--){
-            if(this.lista[i].equals(elemento)){
+            if(this.lista !=null && this.lista[i].equals(elemento)){
                 return i;
             }
         }
