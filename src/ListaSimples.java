@@ -21,8 +21,8 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     private boolean estaCheia() {
-        for (int i = 0; i < this.lista.length; i++) {
-            if (this.lista[i] == null) {
+        for (String item : this.lista) {
+            if (item == null) {
                 return false;
             }
         }
@@ -31,8 +31,8 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     private boolean estaVazio() {
-        for (int i = 0; i < this.lista.length; i++) {
-            if (this.lista[i] != null) {
+        for (String item : this.lista) {
+            if (item != null) {
                 return false;
             }
         }
@@ -116,7 +116,7 @@ public class ListaSimples implements ListaOperacoes {
     public int removerTodas(String elemento) {
         int quantidadeElementosRemovidos = 0;
         for (String item : this.lista) {
-            if (item.equals(elemento)) {
+            if (item != null && item.equals(elemento)) {
                 removerElemento(elemento);
             }
         }
@@ -148,10 +148,10 @@ public class ListaSimples implements ListaOperacoes {
     @Override
     public int adicionarVarios(String[] elementos) {
         int elementosAdicionados = 0;
-        for(int i = 0; i < elementos.length; i++){
-            if(this.lista[i] == null){
+        for(String elemento : elementos){
+            if(!estaCheia()){
+                adicionarElemento(elemento);
                 elementosAdicionados++;
-                this.lista[i] = elementos[i];
             }
         }
         return elementosAdicionados;
