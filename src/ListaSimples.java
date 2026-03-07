@@ -127,9 +127,12 @@ public class ListaSimples implements ListaOperacoes {
 
     }
 
+    /**
+     * Deixa o tamanho da lista em 0, limpando-a
+     */
     @Override
     public void limpar() {
-
+        this.tamanho = 0;
     }
 
     @Override
