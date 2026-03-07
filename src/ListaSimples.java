@@ -139,16 +139,16 @@ public class ListaSimples implements ListaOperacoes {
         return this.lista[indice];
     }
 
+    /**
+     * Insere um elemento na lista com base no indice inserido.
+     * @param indice Posição onde o elemento será inserido.
+     * @param elemento Elemento a ser inserido.
+     * @return true se inserção aconteseu, se não false
+     */
     @Override
     public boolean inserir(int indice, String elemento) {
-        if (!verificarIntervalo(indice)) {
-            throw new IllegalArgumentException("O indice informado está fora do intervalo da lista.");
-        }
-
-        if (estaCheia()) {
-            String[] listaAux = new String[this.lista.length + 1];
-            System.arraycopy(this.lista, 0, listaAux, 0, this.lista.length);
-            this.lista = listaAux;
+        if (!verificarIntervalo(indice) || estaCheia()) {
+            return false;
         }
 
         if (this.lista[indice] != null) {
@@ -159,10 +159,15 @@ public class ListaSimples implements ListaOperacoes {
         return true;
     }
 
+    /**
+     * Remove um elemento da lista pelo indice
+     * @param indice Posição do elemento a ser removido.
+     * @return null se o indice está fora do intervalo da lista, o elemento removido caso não
+     */
     @Override
     public String removerPorIndice(int indice) {
         if (!verificarIntervalo(indice)) {
-            throw new IllegalArgumentException("O indice informado está fora do intervalo da lista.");
+            return null;
         }
         String removido = this.lista[indice];
         this.lista[indice] = null;
@@ -203,8 +208,8 @@ public class ListaSimples implements ListaOperacoes {
     @Override
     public int contarOcorrencias(String elemento) {
         int ocorrencias = 0;
-        for (int i = 0; i < this.lista.length; i++) {
-            if (this.lista[i] != null && this.lista[i].equals(elemento)) {
+        for (String item : this.lista) {
+            if (item != null && item.equals(elemento)) {
                 ocorrencias++;
             }
         }
