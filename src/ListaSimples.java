@@ -178,34 +178,33 @@ public class ListaSimples implements ListaOperacoes {
         if(!verificarIntervalo(indice)){
             throw new IllegalArgumentException("O indice informado está fora do intervalo da lista.");
         }
-        if(posicaoEstaVazia(indice)){
-            return false;
-        }
-        int pontoDePartida = 0;
-        String[] listaAux1 = new String[this.lista.length+1];
-        String[] listaAux2 = new String[this.lista.length+1];
+
         if(estaCheio()){
-            for(int i=0; i<this.lista.length+1; i++){
-                 if(i == indice){
-                    listaAux2 = listaAux1;
-                    listaAux2[i] = elemento;
-                    pontoDePartida = i;
-                    break;
-                } else {
-                    listaAux1[i] = this.lista[i];
-                }
-            }
-            for(int i = pontoDePartida; i < this.lista.length; i++){
-                listaAux2[i+1] = this.lista[i];
-            }
-            this.tamanho ++ ;
-            this.lista = listaAux2;
-            return true;
-        } else {
-
+            String[] listaAux = new String[this.lista.length+1];
+            System.arraycopy(this.lista, 0, listaAux, 0, this.lista.length);
+            this.lista = listaAux;
+            this.tamanho++;
         }
 
-        return false;
+        if(!posicaoEstaVazia(indice)){
+            deslocarParaDireita(indice);
+        }
+
+        lista[indice] = elemento;
+        return true;
+    }
+
+    /**
+     * Método que desloca os itens para esqueda
+     *
+     * @param indice será o ponto final do for
+     */
+    private void deslocarParaDireita(int indice){
+
+        for(int i = this.tamanho; i > indice;i--){
+            this.lista[i] = this.lista[i-1];
+        }
+
     }
 
     @Override
