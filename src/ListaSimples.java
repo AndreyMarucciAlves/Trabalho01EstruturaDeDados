@@ -195,13 +195,13 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     /**
-     * Método que desloca os itens para esqueda
+     * Método que desloca os itens para direita
      *
      * @param indice será o ponto final do for
      */
     private void deslocarParaDireita(int indice){
 
-        for(int i = this.tamanho; i > indice;i--){
+        for(int i = this.lista.length -1; i > indice;i--){
             this.lista[i] = this.lista[i-1];
         }
 
