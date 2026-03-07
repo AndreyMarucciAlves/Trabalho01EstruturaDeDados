@@ -18,11 +18,7 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     public boolean estaVazia() {
-        if(this.lista[0] == null) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.lista[0] == null;
     }
 
     public boolean posicaoEstaVazia(int posicao) {
