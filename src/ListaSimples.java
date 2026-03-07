@@ -135,16 +135,21 @@ public class ListaSimples implements ListaOperacoes {
         this.tamanho = 0;
     }
 
+    /**
+     * Procura a última incidência do elemento na lista.
+     * @param elemento Elemento a ser buscado.
+     * @return Última vez que aparece na lista, ou -1 se não aparece
+     */
     @Override
     public int ultimoIndiceDe(String elemento) {
-        if(buscaElemento(elemento)){
 
+        for(int i = this.tamanho; i >=0;i--){
+            if(this.lista[i].equals(elemento)){
+                return i;
+            }
         }
-        int ultimoIndice;
-        for(int i=0; i<this.lista.length; i++){
-
-        }
-        return 0;
+        System.out.println("Elemento " + elemento + " não encontrado na lista!");
+        return -1;
     }
 
     @Override
