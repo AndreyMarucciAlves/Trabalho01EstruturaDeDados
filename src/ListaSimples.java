@@ -32,6 +32,18 @@ public class ListaSimples implements ListaOperacoes {
         return false;
     }
 
+    /**
+     * Verifica se a lista está cheia.
+     * @return true se está cheia, false se não está.
+     */
+    private boolean estaCheio(){
+        for(int i=0; i< this.lista.length; i++){
+            if(this.lista[i] == null){
+                return false;
+            }
+        }
+        return true;
+    }
     public void percorrerElementos() {
         for (int i = 0; i < this.tamanho; i++) {
             System.out.println(this.lista[i]);
@@ -169,6 +181,24 @@ public class ListaSimples implements ListaOperacoes {
 
     @Override
     public boolean inserir(int indice, String elemento) {
+        if(!verificarIntervalo(indice)){
+            throw new IllegalArgumentException("O indice informado está fora do intervalo da lista.");
+        }
+        if(posicaoEstaVazia(indice)){
+            return false;
+        }
+        if(){
+
+        }
+        String[] listaAux = new String[lista.length];
+        for(int i=0; i<this.lista.length; i++){
+            if(i == indice){
+
+            } else {
+                listaAux[i] = this.lista[i];
+            }
+        }
+        this.lista[indice] = elemento;
         return false;
     }
 
