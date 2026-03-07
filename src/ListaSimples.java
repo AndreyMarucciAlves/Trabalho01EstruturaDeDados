@@ -152,9 +152,20 @@ public class ListaSimples implements ListaOperacoes {
         return -1;
     }
 
+    /**
+     * Conta o número de vezes que um elemento aparece na lista.
+     * @param elemento Elemento a ser contado.
+     * @return número de vezes que foi encontrado na lista.
+     */
     @Override
-    public int contarOcorrencias(String elemento) {
-        return 0;
+    public int contarOcorrencias(String elemento){
+        int ocorrencias = 0;
+        for(int i = 0; i< this.lista.length; i++){
+            if(this.lista[i].equals(elemento)){
+                ocorrencias++;
+            }
+        }
+        return ocorrencias;
     }
 
     @Override
