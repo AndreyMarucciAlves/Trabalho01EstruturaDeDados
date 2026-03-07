@@ -1,18 +1,10 @@
 public class No {
-    private String conteudo;
-    private No prox;
+    String conteudo;
+    No prox;
 
     public No(String conteudo) {
         this.conteudo = conteudo;
         this.prox = null;
-    }
-
-    public String getConteudo() {
-        return conteudo;
-    }
-
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
     }
 
     public No getProx() {
@@ -21,5 +13,13 @@ public class No {
 
     public void setProx(No prox) {
         this.prox = prox;
+    }
+
+    public String getConteudo() {
+        return this.conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
     }
 }

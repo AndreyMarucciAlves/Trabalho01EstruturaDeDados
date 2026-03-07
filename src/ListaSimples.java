@@ -1,38 +1,102 @@
 public class ListaSimples implements ListaOperacoes {
-    private int tamanho;
-    private String lista [];
+    String[] lista;
 
-    public ListaSimples(int tamanhoDaLista) {
-        this.tamanho = tamanhoDaLista;
-        lista = new String[tamanhoDaLista];
-        System.out.println("A lista foi criada com sucesso! Seu tamanho é igual a: " + tamanhoDaLista);
+    public ListaSimples(int tamanho) {
+        this.lista = new String[tamanho];
     }
 
-    public void inserirElemento(String elemento) {
-        for (int i = 0; i < this.tamanho ; i++) {
-            if(posicaoEstaVazia(i)) {
-                this.lista[i] = elemento;
-                break;
+    public void exibirElementos() {
+        for (int i = 0; i < this.lista.length; i++) {
+            System.out.println("Lista[" + i + "] = " + this.lista[i]);
+        }
+    }
+
+    public void adicionarElemento(String elemento) {
+        if (!estaCheia()) {
+            this.lista[encontrarPosicaoVazia()] = elemento;
+            System.out.println("Elemento " + elemento + " adicionado com sucesso!");
+        }
+    }
+
+    private boolean estaCheia() {
+        for (int i = 0; i < this.lista.length; i++) {
+            if (this.lista[i] == null) {
+                return false;
+            }
+        }
+        System.out.println("A lista está cheia!");
+        return true;
+    }
+
+    private boolean estaVazio() {
+        for (int i = 0; i < this.lista.length; i++) {
+            if (this.lista[i] != null) {
+                return false;
+            }
+        }
+        System.out.println("A lista está vazia!");
+        return true;
+    }
+
+    private int encontrarPosicaoVazia() {
+        int i;
+        for (i = 0; i < this.lista.length; i++) {
+            if (this.lista[i] == null) {
+                return i;
+            }
+        }
+        return i;
+    }
+
+    public void removerElemento(String elemento) {
+        if (!estaVazio()) {
+            if (this.buscarElemento(elemento) >= 0) {
+                this.lista[this.buscarElemento(elemento)] = null;
+                System.out.println("Elemento " + elemento + " removido com sucesso!");
             }
         }
     }
 
-    public boolean estaVazia() {
-        return this.lista[0] == null;
+    public int buscarElemento(String elemento) {
+        int i;
+        if (!estaVazio()) {
+            for (i = 0; i < this.lista.length; i++) {
+                if (this.lista[i] != null && this.lista[i].equals(elemento)) {
+                    return i;
+                }
+            }
+        }
+        System.out.println("Elemento não encontrado na lista.");
+        return -1;
     }
 
-    public boolean posicaoEstaVazia(int posicao) {
-        return this.lista[posicao] == null;
-    }
-
-    public void percorrerElementos() {
-        for (int i = 0; i < this.tamanho; i++) {
-            System.out.println(this.lista[i]);
+    public void alterarElemento(String elementoASerAlterado, String alteracao) {
+        if (buscarElemento(elementoASerAlterado) >= 0) {
+            this.lista[buscarElemento(elementoASerAlterado)] = alteracao;
+            System.out.println("Elemento " + elementoASerAlterado + " alterado com sucesso para " + alteracao);
         }
     }
 
-    public boolean verificarIntervalo(int indice) {
-        if(indice >= 0 && indice <= this.tamanho-1) {
+    public void quantidadeElementos() {
+        int cont = 0;
+        if (!estaVazio()) {
+            for (int i = 0; i < this.lista.length; i++) {
+                if (this.lista[i] != null) {
+                    cont++;
+                }
+            }
+        }
+        System.out.println("A lista possui " + cont + " elementos!");
+    }
+
+    private void deslocarParaDireita(int indice) {
+        for (int i = this.lista.length - 1; i > indice; i--) {
+            this.lista[i] = this.lista[i - 1];
+        }
+    }
+
+    private boolean verificarIntervalo(int indice) {
+        if (indice >= 0 && indice <= this.lista.length - 1) {
             return true;
         } else {
             System.out.println("O indice informado está fora do intervalo da lista.");
@@ -40,91 +104,69 @@ public class ListaSimples implements ListaOperacoes {
         }
     }
 
-    public boolean buscaElemento(String elemento) {
-        for (int i = 0; i < this.tamanho; i++) {
-            if(this.lista[i].equals(elemento)) {
-                System.out.println("O elemento " + elemento + " existe na lista, no índice " + (i+1));
-                return true;
-            }
-        }
-        System.out.println("O elemento não foi encontrado!");
-        return false;
+    @Override
+    public int removerTodas(String elemento) {
+        return 0;
     }
 
-    public void editarPorIndice(int indice, String elemento) {
-        if(verificarIntervalo(indice)) {
-            if(posicaoEstaVazia(indice)) {
-                System.out.println("A posição informada já está vazia.");
-            } else {
-                this.lista[indice] = elemento;
-            }
-        }
-    }
-
-    public void contarElementos() {
+    @Override
+    public int contar() {
         int cont = 0;
-        if(estaVazia()) {
-            System.out.println("Existem " + cont + " elementos na lista.");
-        } else {
-            for (int i = 0; i < tamanho; i++) {
-                if (this.lista[i] != null) {
-                    cont = cont + 1;
-                } else {
-                    break;
-                }
+        for (int i = 0; i < this.lista.length; i++) {
+            if (this.lista[i] != null) {
+                cont++;
             }
-            System.out.println("Existem " + cont + " elementos na lista.");
         }
+        return cont;
     }
 
-    public void ordenarCrescente() {
-        if(estaVazia()) {
-            System.out.println("Não existem elementos para serem ordenados.");
-        } else {
-            String aux;
-            for (int h = 0; h < this.tamanho; h++) {// 3
-                for (int i = 0; i < (this.tamanho - 1); i++) {// 2
-                    if(this.lista[i+1] != null &&this.lista[i].length() > this.lista[i+1].length()) {
-                        aux = this.lista[i];
-                        this.lista[i] = this.lista[i+1];
-                        this.lista[i+1] = aux;
-                    }
-                }
-            }
-
-        }
-    }
-
-    public void insereOrdenado(String elemento) {
-        ordenarCrescente();
-        inserirElemento(elemento);
-
+    @Override
+    public int adicionarVarios(String[] elementos) {
+        return 0;
     }
 
     /**
-     * Verifica se a lista está cheia.
-     * @return true se está cheia, false se não está.
+     * Obtém o elemento da lista com base no indice inserido.
+     * @param indice Posição desejada.
+     * @return null se a posição está vazia ou (maior ou menor) que o intervalo da lista. Elemento do indice se não.
+     * @throws IllegalArgumentException se o índice for inválido (menor que zero ou fora do intervalo).
      */
-    private boolean estaCheio(){
-        for (String item : this.lista) {
-            if (item == null) {
-                return false;
-            }
+    @Override
+    public String obter(int indice) {
+        if (!verificarIntervalo(indice)) {
+            throw new IllegalArgumentException("O indice informado está fora do intervalo da lista.");
         }
+        return this.lista[indice];
+    }
+
+    @Override
+    public boolean inserir(int indice, String elemento) {
+        if (!verificarIntervalo(indice)) {
+            throw new IllegalArgumentException("O indice informado está fora do intervalo da lista.");
+        }
+
+        if (estaCheia()) {
+            String[] listaAux = new String[this.lista.length + 1];
+            System.arraycopy(this.lista, 0, listaAux, 0, this.lista.length);
+            this.lista = listaAux;
+        }
+
+        if (this.lista[indice] != null) {
+            deslocarParaDireita(indice);
+        }
+
+        lista[indice] = elemento;
         return true;
     }
 
-    /**
-     * Método que desloca os itens para direita
-     *
-     * @param indice será o ponto final do for
-     */
-    private void deslocarParaDireita(int indice){
-
-        for(int i = this.lista.length -1; i > indice;i--){
-            this.lista[i] = this.lista[i-1];
+    @Override
+    public String removerPorIndice(int indice) {
+        if (!verificarIntervalo(indice)) {
+            throw new IllegalArgumentException("O indice informado está fora do intervalo da lista.");
         }
-
+        String removido = this.lista[indice];
+        this.lista[indice] = null;
+        return removido;
     }
 
     /**
@@ -132,7 +174,9 @@ public class ListaSimples implements ListaOperacoes {
      */
     @Override
     public void limpar() {
-        this.tamanho = 0;
+        for (int i = 0; i < this.lista.length; i++) {
+            this.lista[i] = null;
+        }
     }
 
     /**
@@ -142,9 +186,8 @@ public class ListaSimples implements ListaOperacoes {
      */
     @Override
     public int ultimoIndiceDe(String elemento) {
-
-        for(int i = this.tamanho; i >=0;i--){
-            if(this.lista !=null && this.lista[i].equals(elemento)){
+        for (int i = this.lista.length - 1; i >= 0; i--) {
+            if (this.lista[i] != null && this.lista[i].equals(elemento)) {
                 return i;
             }
         }
@@ -158,85 +201,31 @@ public class ListaSimples implements ListaOperacoes {
      * @return número de vezes que foi encontrado na lista.
      */
     @Override
-    public int contarOcorrencias(String elemento){
+    public int contarOcorrencias(String elemento) {
         int ocorrencias = 0;
-        for(int i = 0; i< this.lista.length; i++){
-            if(this.lista[i].equals(elemento)){
+        for (int i = 0; i < this.lista.length; i++) {
+            if (this.lista[i] != null && this.lista[i].equals(elemento)) {
                 ocorrencias++;
             }
         }
         return ocorrencias;
     }
 
-    @Override
-    public int substituir(String antigo, String novo) {
-        return 0;
-    }
-
-    @Override
-    public int removerTodas(String elemento) {
-        return 0;
-    }
-
-    @Override
-    public int contar() {
-        return 0;
-    }
-
-    @Override
-    public int adicionarVarios(String[] elementos) {
-        return 0;
-    }
-
     /**
-     *Obtém o elemento da lista com base no indice inserido.
-     * @param indice Posição desejada.
-     * @return null se a posição está vazia ou (maior ou menor) que o intervalo da lista. Elemento do indice se não.
-     * @throws IllegalArgumentException se o índice for inválido (menor que zero ou fora do intervalo).
+     * Substitui todas as ocorrências de um elemento na lista por outro elemento.
+     * @param antigo Elemento que será substituído.
+     * @param novo Novo valor que substituirá o antigo.
+     * @return Quantidade total de substituições realizadas.
      */
     @Override
-    public String obter(int indice) {
-        if(!verificarIntervalo(indice)){
-            throw new IllegalArgumentException("O indice informado está fora do intervalo da lista.");
-        }
-        if(posicaoEstaVazia(indice)){
-            return null;
-        }
-        return this.lista[indice];
-    }
-
-    @Override
-    public boolean inserir(int indice, String elemento) {
-        if(!verificarIntervalo(indice)){
-            throw new IllegalArgumentException("O indice informado está fora do intervalo da lista.");
-        }
-
-        if(estaCheio()){
-            String[] listaAux = new String[this.lista.length+1];
-            System.arraycopy(this.lista, 0, listaAux, 0, this.lista.length);
-            this.lista = listaAux;
-            this.tamanho++;
-        }
-
-        if(!posicaoEstaVazia(indice)){
-            deslocarParaDireita(indice);
-        }
-
-        lista[indice] = elemento;
-        return true;
-    }
-
-    @Override
-    public String removerPorIndice(int indice) {
-        if(verificarIntervalo(indice)) {
-            if(posicaoEstaVazia(indice)) {
-                System.out.println("A posição informada já está vazia.");
-            } else {
-                this.lista[indice] = null;
+    public int substituir(String antigo, String novo) {
+        int subs = 0;
+        for (int i = 0; i < this.lista.length; i++) {
+            if (this.lista[i] != null && this.lista[i].equals(antigo)) {
+                this.lista[i] = novo;
+                subs++;
             }
         }
-
-        return "";
+        return subs;
     }
-
 }
