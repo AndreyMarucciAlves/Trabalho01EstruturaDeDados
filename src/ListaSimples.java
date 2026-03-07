@@ -150,9 +150,21 @@ public class ListaSimples implements ListaOperacoes {
         return 0;
     }
 
+    /**
+     *Obtém o elemento da lista com base no indice inserido.
+     * @param indice Posição desejada.
+     * @return null se a posição está vazia ou (maior ou menor) que o intervalo da lista. Elemento do indice se não.
+     * @throws IllegalArgumentException se o índice for inválido (menor que zero ou fora do intervalo).
+     */
     @Override
     public String obter(int indice) {
-        return "";
+        if(!verificarIntervalo(indice)){
+            throw new IllegalArgumentException("O indice informado está fora do intervalo da lista.");
+        }
+        if(posicaoEstaVazia(indice)){
+            return null;
+        }
+        return this.lista[indice];
     }
 
     @Override
