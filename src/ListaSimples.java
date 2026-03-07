@@ -118,6 +118,7 @@ public class ListaSimples implements ListaOperacoes {
         for (String item : this.lista) {
             if (item != null && item.equals(elemento)) {
                 removerElemento(elemento);
+                quantidadeElementosRemovidos ++ ;
             }
         }
         return quantidadeElementosRemovidos;
