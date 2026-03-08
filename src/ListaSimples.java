@@ -91,12 +91,25 @@ public class ListaSimples implements ListaOperacoes {
         System.out.println("A lista possui " + cont + " elementos!");
     }
 
+    /**
+     * Desloca os elementos para a direita
+     *
+     * @param indice indice da inserção
+     * @param nullMaisProximo o elemento null mais próximo a direita do indice
+     */
     private void deslocarParaDireita(int indice, int nullMaisProximo) {
         for (int i = nullMaisProximo; i > indice; i--) {
             this.lista[i] = this.lista[i - 1];
         }
     }
 
+    /**
+     * Encontra o elemento null mais próximo a direita.
+     *
+     * @param indice indice da inserção
+     * @return retorna o indice do elemento nulo mais próximo com base no indice passasdo por parâmetro, se não houver
+     * retorna -1
+     */
     private int encontrarNullMaisProximo(int indice) {
         for (int i = indice + 1; i < this.lista.length; i++) {
             if (this.lista[i] == null) {
