@@ -7,5 +7,6 @@ public class Main{
         ld.adicionarElemento("com");
         ld.adicionarElemento("você ?");
         ld.exibirElementos();
+        System.out.println(ld.contar());
     }
 }

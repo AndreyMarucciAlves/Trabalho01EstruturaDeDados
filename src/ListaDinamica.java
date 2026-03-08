@@ -85,12 +85,22 @@ public class ListaDinamica implements ListaOperacoes{
         return 0;
     }
 
+    /**
+     * Conta quantos elementos existem dentro da lista dinâmica.
+     *
+     * @return quantidade de elementos na lista dinâmica.
+     */
     @Override
     public int contar() {
+        int cont = 0;
         if(existeInicio()){
-
+            No aux = this.inicio;
+            while(aux != null){
+                cont ++;
+                aux = aux.getProx();
+            }
         }
-        return 0;
+        return cont;
     }
 
     @Override
