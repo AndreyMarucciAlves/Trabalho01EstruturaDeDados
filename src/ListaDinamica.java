@@ -87,7 +87,7 @@ public class ListaDinamica implements ListaOperacoes{
      * @return true se o indice estiver dentro do intervalo
      */
     private boolean verificarIntervalo(int indice){
-        return contar()-1 >=  indice;
+        return contar()-1 >=  indice && indice >= 0;
     }
 
     @Override
