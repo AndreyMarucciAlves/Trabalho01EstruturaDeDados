@@ -90,6 +90,15 @@ public class ListaDinamica implements ListaOperacoes{
         return this.contar()-1 >=  indice && indice >= 0;
     }
 
+    /**
+     * Obtém o último índice da lista dinâmica.
+     *
+     * @return o último índice da lista dinâmica.
+     */
+    private int ultimoIndiceLista(){
+        return this.contar()-1;
+    }
+
     @Override
     public int removerTodas(String elemento) {
         return 0;
@@ -161,12 +170,32 @@ public class ListaDinamica implements ListaOperacoes{
     public void limpar() {}
 
     /**
-     * Obtém o último índice da lista dinâmica.
+     *Retorna a última incidência do elemento buscado na lista dinâmica.
      *
-     * @return o último índice da lista dinâmica, caso não haja nada retorna -1.
+     * @param elemento Elemento a ser buscado.
+     * @return Índice da última ocorrência ou -1 caso não exista.
      */
     @Override
-    public int ultimoIndiceDe(String elemento) { return this.contar()-1; }
+    public int ultimoIndiceDe(String elemento) {
+        if(elemento == null || elemento.isBlank()){
+            throw new IllegalArgumentException("Não é possível verificar a incidência de um elemento vazio ou nulo.");
+        }
+        int ultimoIndiceElemento = -1;
+        if(existeInicio()){
+            No aux = this.inicio;
+            int i = 0;
+
+            while(aux != null){
+                if(aux.getConteudo().equals(elemento)){
+                    ultimoIndiceElemento = i;
+                }
+                i++;
+                aux = aux.getProx();
+            }
+
+        }
+        return ultimoIndiceElemento;
+    }
 
     @Override
     public int contarOcorrencias(String elemento) {

@@ -1,7 +1,11 @@
 public class Main{
     static void main() {
         ListaDinamica ld = new ListaDinamica();
-
-        System.out.println(ld.obter(0));
+        ld.adicionarElemento("João");
+        ld.adicionarElemento("Maria");
+        ld.adicionarElemento("Júlia");
+        ld.adicionarElemento("João");
+        ld.adicionarElemento("João");
+        System.out.println(ld.ultimoIndiceDe("João"));
     }
 }
