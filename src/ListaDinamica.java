@@ -178,7 +178,7 @@ public class ListaDinamica implements ListaOperacoes{
     @Override
     public int ultimoIndiceDe(String elemento) {
         if(elemento == null || elemento.isBlank()){
-            throw new IllegalArgumentException("Não é possível verificar a incidência de um elemento vazio ou nulo.");
+            return -1;
         }
         int ultimoIndiceElemento = -1;
         if(existeInicio()){
@@ -197,13 +197,56 @@ public class ListaDinamica implements ListaOperacoes{
         return ultimoIndiceElemento;
     }
 
+    /**
+     * Conta quantas vezes um elemento buscado aparece na lista.
+     *
+     * @param elemento Elemento a ser contado.
+     * @return a quantidade de ocorrências de um elemento na lista dinâmica.
+     */
     @Override
     public int contarOcorrencias(String elemento) {
-        return 0;
+        if(elemento == null || elemento.isBlank()){
+            return 0;
+        }
+        int ocorrencias = 0;
+        if(existeInicio()){
+            No aux = this.inicio;
+
+            while(aux != null){
+                if(aux.getConteudo().equals(elemento)){
+                    ocorrencias ++;
+                }
+
+                aux = aux.getProx();
+            }
+        }
+        return ocorrencias;
     }
 
+    /**
+     * Substitui todas as ocorrências de um elemento antigo por um novo elemento.
+     *
+     * Exemplo:
+     * Lista: ["Ana", "Carlos", "Ana"]
+     * substituir("Ana", "Maria")
+     * Resultado: ["Maria", "Carlos", "Maria"]
+     *
+     * @param antigo Elemento que será substituído.
+     * @param novo Novo valor que substituirá o antigo.
+     * @return Quantidade total de substituições realizadas.
+     */
     @Override
     public int substituir(String antigo, String novo) {
+        if(antigo == null || antigo.isBlank()){
+            return 0;
+        }
+        int quantidadeSubs = 0;
+        if(existeInicio()){
+            No aux = this.inicio;
+            while(aux != null){
+
+            }
+        }
         return 0;
     }
 }
