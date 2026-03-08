@@ -165,8 +165,8 @@ public class ListaSimples implements ListaOperacoes {
      * Obtém o elemento da lista com base no indice inserido.
      *
      * @param indice Posição desejada.
-     * @return null se a posição está vazia ou (maior ou menor) que o intervalo da lista. Elemento do indice se não.
-     * @throws IllegalArgumentException se o índice for inválido (menor que zero ou fora do intervalo).
+     * @return null se a posição está vazia. Elemento do indice se não.
+     * @throws IllegalArgumentException se o índice for inválido (menor que zero ou maior que o tamanho da lista).
      */
     @Override
     public String obter(int indice) {
