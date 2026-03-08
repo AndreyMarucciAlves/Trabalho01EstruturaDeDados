@@ -90,15 +90,6 @@ public class ListaDinamica implements ListaOperacoes{
         return this.contar()-1 >=  indice && indice >= 0;
     }
 
-    /**
-     * Obtém o último índice da lista dinâmica.
-     *
-     * @return o último índice da lista dinâmica.
-     */
-    private int ultimoIndice(){
-        return this.contar()-1;
-    }
-
     @Override
     public int removerTodas(String elemento) {
         return 0;
@@ -169,10 +160,13 @@ public class ListaDinamica implements ListaOperacoes{
     @Override
     public void limpar() {}
 
+    /**
+     * Obtém o último índice da lista dinâmica.
+     *
+     * @return o último índice da lista dinâmica, caso não haja nada retorna -1.
+     */
     @Override
-    public int ultimoIndiceDe(String elemento) {
-        return 0;
-    }
+    public int ultimoIndiceDe(String elemento) { return this.contar()-1; }
 
     @Override
     public int contarOcorrencias(String elemento) {
