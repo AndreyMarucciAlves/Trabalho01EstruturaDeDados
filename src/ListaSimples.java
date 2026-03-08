@@ -92,6 +92,19 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     /**
+     * Desloca os elementos para a esquerda.
+     *
+     * @param indice será o ponto de partida do for para o deslocamento dos elementos à esquerda.
+     */
+    private void deslocarParaEsquerda(int indice) {
+
+        for (int i = indice; i < this.lista.length - 1; i++) {
+            this.lista[i] = this.lista[i + 1];
+        }
+
+        this.lista[this.lista.length - 1] = null;
+    }
+    /**
      * Desloca os elementos para a direita
      *
      * @param indice indice da inserção
@@ -209,20 +222,27 @@ public class ListaSimples implements ListaOperacoes {
             return false;
         }
 
-        if (this.lista[indice] != null) {
-            int nullMaisProximo = encontrarNullMaisProximo(indice);
-
-            if(nullMaisProximo == -1){
-                System.out.println("Erro: Não tem espaço para deslocar os elementos à direita a partir do indice.");
-                return false;
+        if(elemento != null){
+            int fimDaLista = -1;
+            for (int i = 0; i < this.lista.length; i++) {
+                if (this.lista[i] == null) {
+                    fimDaLista = i;
+                    break;
+                }
             }
 
-            deslocarParaDireita(indice, nullMaisProximo);
+            if(fimDaLista != -1){
+                for (int i = fimDaLista; i > indice; i--){
+                    this.lista[i] = this.lista[i - 1];
+                }
+            }
+            this.lista[indice] = elemento;
+            System.out.println("Elemento: " + elemento + " inserido na lista no indice " + indice + "!!");
+            return true;
+        } else {
+            System.out.println("Não é possível inserir um elemento nulo.");
+            return false;
         }
-
-        lista[indice] = elemento;
-        System.out.println("Elemento: " + elemento + " inserido na lista no indice " + indice + "!!");
-        return true;
     }
 
     /**
