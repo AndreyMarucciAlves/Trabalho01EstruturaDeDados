@@ -124,12 +124,13 @@ public class ListaSimples implements ListaOperacoes {
     @Override
     public int removerTodas(String elemento) {
         int quantidadeElementosRemovidos = 0;
-        for (String item : this.lista) {
-            if (item != null && item.equals(elemento)) {
-                removerElemento(elemento);
+        for(int i = 0; i < this.lista.length; i ++){
+            if(this.lista[i] != null && this.lista[i].equals(elemento)){
+                this.lista[i] = null ;
                 quantidadeElementosRemovidos ++ ;
             }
         }
+
         return quantidadeElementosRemovidos;
     }
 
