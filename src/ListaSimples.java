@@ -51,11 +51,13 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     public void removerElemento(String elemento) {
+        if(elemento == null){
+            System.out.println("Não é possível remover porque o elemento passado por parâmetro é nulo.");
+            return;
+        }
         if (!estaVazio()) {
-            if (this.buscarElemento(elemento) >= 0) {
-                this.lista[this.buscarElemento(elemento)] = null;
-                System.out.println("Elemento " + elemento + " removido com sucesso!");
-            }
+            int indiceElemento = buscarElemento(elemento);
+            removerPorIndice(indiceElemento);
         }
     }
 
@@ -228,11 +230,11 @@ public class ListaSimples implements ListaOperacoes {
 
         String elementoRemovido = this.lista[indice];
 
-        for(int i = indice; i < lista.length; i++){
+        for(int i = indice; i < lista.length - 1; i++){
             this.lista[i] = this.lista[i+1];
         }
         this.lista[this.lista.length -1 ] = null;
-
+        System.out.println("Elemento " + elementoRemovido + " removido com sucesso.");
         return elementoRemovido;
     }
 
