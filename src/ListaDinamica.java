@@ -87,9 +87,17 @@ public class ListaDinamica implements ListaOperacoes{
      * @return true se o indice estiver dentro do intervalo
      */
     private boolean verificarIntervalo(int indice){
-        return contar()-1 >=  indice && indice >= 0;
+        return this.contar()-1 >=  indice && indice >= 0;
     }
 
+    /**
+     * Obtém o último índice da lista dinâmica.
+     *
+     * @return o último índice da lista dinâmica.
+     */
+    private int ultimoIndice(){
+        return this.contar()-1;
+    }
     @Override
     public int removerTodas(String elemento) {
         return 0;
