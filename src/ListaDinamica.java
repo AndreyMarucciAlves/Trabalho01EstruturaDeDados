@@ -98,6 +98,7 @@ public class ListaDinamica implements ListaOperacoes{
     private int ultimoIndice(){
         return this.contar()-1;
     }
+
     @Override
     public int removerTodas(String elemento) {
         return 0;
@@ -126,11 +127,18 @@ public class ListaDinamica implements ListaOperacoes{
         return 0;
     }
 
+    /**
+     * Obtém o elemento da lista na posição indicada.
+     *
+     * @param indice Posição desejada.
+     * @return null se a lista está vazia, se não retorna o elemento da posição da lista.
+     * @throws IllegalArgumentException se o indice está fora do intervalo da lista.
+     */
     @Override
     public String obter(int indice) {
-        if(indice < 0){
+        if(!verificarIntervalo(indice)){
             throw new IllegalArgumentException(
-                    "Não foi possível obter o elemento da lista dinâmica porque o indice é menor que 0"
+                    "Não foi possível obter o elemento da lista porque o indice está fora do intervalo da lista"
             );
         }
 
@@ -143,10 +151,9 @@ public class ListaDinamica implements ListaOperacoes{
             }
 
             return aux.getConteudo();
-        } else {
-            System.out.println("Não foi possível obter elemento porque a lista está vazia.");
-            return null;
         }
+
+        return null; //Mesmo sendo impossível de chegar aqui, tive que colocar pro compilador rodar o código.
     }
 
     @Override

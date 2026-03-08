@@ -1,11 +1,7 @@
 public class Main{
     static void main() {
         ListaDinamica ld = new ListaDinamica();
-        ld.adicionarElemento("Oi");
-        ld.adicionarElemento("tudo");
-        ld.adicionarElemento("bem");
-        ld.adicionarElemento("com");
-        ld.adicionarElemento("você ?");
 
+        System.out.println(ld.obter(0));
     }
 }
