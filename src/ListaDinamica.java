@@ -23,7 +23,7 @@ public class ListaDinamica implements ListaOperacoes{
         return this.inicio.getConteudo() != null;
     }
 
-    public void exibirElementos() {
+    public void exibirElementos(boolean b) {
         int indice = 0;
         if(existeInicio()) {
             No aux = this.inicio;
@@ -80,6 +80,16 @@ public class ListaDinamica implements ListaOperacoes{
         return false;
     }
 
+    /**
+     * Verifica se um número está dentro do intervalo da lista.
+     *
+     * @param indice número da posição da lista a ser verificado se existe
+     * @return true se o indice estiver dentro do intervalo
+     */
+    private boolean verificarIntervalo(int indice){
+        return contar()-1 >=  indice;
+    }
+
     @Override
     public int removerTodas(String elemento) {
         return 0;
@@ -110,7 +120,25 @@ public class ListaDinamica implements ListaOperacoes{
 
     @Override
     public String obter(int indice) {
-        return "";
+        if(indice < 0){
+            throw new IllegalArgumentException(
+                    "Não foi possível obter o elemento da lista dinâmica porque o indice é menor que 0"
+            );
+        }
+
+        if(existeInicio()){
+            int indiceLista= 0;
+            No aux = this.inicio;
+            while(aux.getProx() != null && indiceLista < indice){
+                indiceLista++;
+                aux = aux.getProx();
+            }
+
+            return aux.getConteudo();
+        } else {
+            System.out.println("Não foi possível obter elemento porque a lista está vazia.");
+            return null;
+        }
     }
 
     @Override
