@@ -109,13 +109,15 @@ public class ListaSimples implements ListaOperacoes {
     @Override
     public int removerTodas(String elemento) {
         int quantidadeElementosRemovidos = 0;
-        for(int i = 0; i < this.lista.length; i ++){
+        if(elemento == null){
+            System.out.println("Não é possível remover um elemento nulo.");
+        }
+        for(int i = this.lista.length -1; i >= 0; i --){
             if(this.lista[i] != null && this.lista[i].equals(elemento)){
-                this.lista[i] = null ;
-                quantidadeElementosRemovidos ++ ;
+                removerPorIndice(i);
+                quantidadeElementosRemovidos++;
             }
         }
-
         return quantidadeElementosRemovidos;
     }
 
@@ -130,6 +132,8 @@ public class ListaSimples implements ListaOperacoes {
         for (String item : this.lista) {
             if (item != null) {
                 cont++;
+            } else {
+                break;
             }
         }
         return cont;
@@ -148,6 +152,8 @@ public class ListaSimples implements ListaOperacoes {
             if(!estaCheia()){
                 adicionarElemento(elemento);
                 elementosAdicionados++;
+            } else {
+                break;
             }
         }
         return elementosAdicionados;
@@ -225,7 +231,7 @@ public class ListaSimples implements ListaOperacoes {
         for(int i = indice; i < lista.length; i++){
             this.lista[i] = this.lista[i+1];
         }
-        this.lista[this.lista.length -1 ] = null; // Garantindo que o último índice da lista está vazio.
+        this.lista[this.lista.length -1 ] = null;
 
         return elementoRemovido;
     }
