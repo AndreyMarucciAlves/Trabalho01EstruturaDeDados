@@ -24,13 +24,15 @@ public class ListaDinamica implements ListaOperacoes{
     }
 
     public void exibirElementos() {
+        int indice = 0;
         if(existeInicio()) {
             No aux = this.inicio;
             while(aux.getProx() != null) {
-                System.out.println(aux.getConteudo());
+                System.out.println("ListaDinâmica[" + indice + "] = " + aux.getConteudo());
                 aux = aux.getProx();
+                indice++;
             }
-            System.out.println(aux.getConteudo());
+            System.out.println("ListaDinâmica[" + indice + "] = " + aux.getConteudo());
         } else {
             System.out.println("Não existem elementos na Lista Dinâmica.");
         }
@@ -85,6 +87,9 @@ public class ListaDinamica implements ListaOperacoes{
 
     @Override
     public int contar() {
+        if(existeInicio()){
+
+        }
         return 0;
     }
 
@@ -109,9 +114,7 @@ public class ListaDinamica implements ListaOperacoes{
     }
 
     @Override
-    public void limpar() {
-
-    }
+    public void limpar() {}
 
     @Override
     public int ultimoIndiceDe(String elemento) {
