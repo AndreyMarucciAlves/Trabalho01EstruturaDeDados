@@ -91,20 +91,19 @@ public class ListaSimples implements ListaOperacoes {
         System.out.println("A lista possui " + cont + " elementos!");
     }
 
-    private void deslocarParaDireita(int indice) {
-        int nullMaisProximo = -1;
-        for (int i = indice; i < this.lista.length; i++) {
-            if (this.lista[i] == null) {
-                nullMaisProximo = i;
-                break;
-            }
+    private void deslocarParaDireita(int indice, int nullMaisProximo) {
+        for (int i = nullMaisProximo; i > indice; i--) {
+            this.lista[i] = this.lista[i - 1];
         }
+    }
 
-        if (nullMaisProximo != -1) {
-            for (int i = nullMaisProximo; i > indice; i--) {
-                this.lista[i] = this.lista[i - 1];
+    private int encontrarNullMaisProximo(int indice) {
+        for (int i = indice + 1; i < this.lista.length; i++) {
+            if (this.lista[i] == null) {
+                return i;
             }
         }
+        return -1;
     }
 
     private boolean verificarIntervalo(int indice) {
@@ -197,10 +196,18 @@ public class ListaSimples implements ListaOperacoes {
         }
 
         if (this.lista[indice] != null) {
-            deslocarParaDireita(indice);
+            int nullMaisProximo = encontrarNullMaisProximo(indice);
+
+            if(nullMaisProximo == -1){
+                System.out.println("Erro: Não tem espaço para deslocar os elementos à direita a partir do indice.");
+                return false;
+            }
+
+            deslocarParaDireita(indice, nullMaisProximo);
         }
 
         lista[indice] = elemento;
+        System.out.println("Elemento: " + elemento + " inserido na lista no indice " + indice + "!!");
         return true;
     }
 
