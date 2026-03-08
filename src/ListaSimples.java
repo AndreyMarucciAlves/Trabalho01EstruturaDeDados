@@ -82,8 +82,8 @@ public class ListaSimples implements ListaOperacoes {
     public void quantidadeElementos() {
         int cont = 0;
         if (!estaVazio()) {
-            for (int i = 0; i < this.lista.length; i++) {
-                if (this.lista[i] != null) {
+            for (String item : this.lista) {
+                if (item != null) {
                     cont++;
                 }
             }
@@ -92,8 +92,18 @@ public class ListaSimples implements ListaOperacoes {
     }
 
     private void deslocarParaDireita(int indice) {
-        for (int i = this.lista.length - 1; i > indice; i--) {
-            this.lista[i] = this.lista[i - 1];
+        int nullMaisProximo = -1;
+        for (int i = indice; i < this.lista.length; i++) {
+            if (this.lista[i] == null) {
+                nullMaisProximo = i;
+                break;
+            }
+        }
+
+        if (nullMaisProximo != -1) {
+            for (int i = nullMaisProximo; i > indice; i--) {
+                this.lista[i] = this.lista[i - 1];
+            }
         }
     }
 
