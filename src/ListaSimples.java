@@ -215,9 +215,19 @@ public class ListaSimples implements ListaOperacoes {
         if (!verificarIntervalo(indice)) {
             return null;
         }
-        String removido = this.lista[indice];
-        this.lista[indice] = null;
-        return removido;
+        if(this.lista[indice] == null){
+            System.out.println("Erro: O indice " + indice + " já está vazio.");
+            return null;
+        }
+
+        String elementoRemovido = this.lista[indice];
+
+        for(int i = indice; i < lista.length; i++){
+            this.lista[i] = this.lista[i+1];
+        }
+        this.lista[this.lista.length -1 ] = null; // Garantindo que o último índice da lista está vazio.
+
+        return elementoRemovido;
     }
 
     /**
