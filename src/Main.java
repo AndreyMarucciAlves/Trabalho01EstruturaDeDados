@@ -6,6 +6,7 @@ public class Main{
         ld.adicionarElemento("Júlia");
         ld.adicionarElemento("João");
         ld.adicionarElemento("João");
-        System.out.println(ld.ultimoIndiceDe("João"));
+        ld.substituir("João","Andrey");
+        ld.exibirElementos();
     }
 }

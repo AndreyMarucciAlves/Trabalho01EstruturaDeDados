@@ -23,7 +23,7 @@ public class ListaDinamica implements ListaOperacoes{
         return this.inicio.getConteudo() != null;
     }
 
-    public void exibirElementos(boolean b) {
+    public void exibirElementos() {
         int indice = 0;
         if(existeInicio()) {
             No aux = this.inicio;
@@ -237,16 +237,20 @@ public class ListaDinamica implements ListaOperacoes{
      */
     @Override
     public int substituir(String antigo, String novo) {
-        if(antigo == null || antigo.isBlank()){
+        if(novo == null || novo.isBlank()){
             return 0;
         }
         int quantidadeSubs = 0;
         if(existeInicio()){
             No aux = this.inicio;
             while(aux != null){
-
+                if(aux.getConteudo().equals(antigo)){
+                    quantidadeSubs++;
+                    this.inicio.setConteudo(novo);
+                }
+                aux = aux.getProx();
             }
         }
-        return 0;
+        return quantidadeSubs;
     }
 }
