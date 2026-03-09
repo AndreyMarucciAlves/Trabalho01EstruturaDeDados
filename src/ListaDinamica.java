@@ -7,6 +7,10 @@ public class ListaDinamica implements ListaOperacoes{
     }
 
     public void adicionarElemento(String conteudo) {
+        if(conteudo == null || conteudo.isBlank()){
+            System.out.println("Adição mal sucedida porque o elemento é nulo ou vazio.");
+            return;
+        }
         if(!this.existeInicio()) {
             this.inicio.setConteudo(conteudo);
         } else {
@@ -122,9 +126,27 @@ public class ListaDinamica implements ListaOperacoes{
         return cont;
     }
 
+    /**
+     * Adiciona múltiplos elementos à lista.
+     *
+     * @param elementos Vetor de Strings contendo os elementos a serem adicionados.
+     * @return Quantidade de elementos que foram adicionados.
+     */
     @Override
     public int adicionarVarios(String[] elementos) {
-        return 0;
+        int qtdAdc = 0;
+
+        if(elementos == null){
+            return qtdAdc;
+        }
+
+        for(String e : elementos){
+            if (e != null && !e.isBlank()) {
+                adicionarElemento(e);
+                qtdAdc++;
+            }
+        }
+        return qtdAdc;
     }
 
     /**
