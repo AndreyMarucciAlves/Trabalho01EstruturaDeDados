@@ -237,16 +237,18 @@ public class ListaDinamica implements ListaOperacoes{
      */
     @Override
     public int substituir(String antigo, String novo) {
-        if(novo == null || novo.isBlank()){
+        if(antigo == null || antigo.isBlank() || novo == null || novo.isBlank()){
             return 0;
         }
+
         int quantidadeSubs = 0;
+
         if(existeInicio()){
             No aux = this.inicio;
             while(aux != null){
                 if(aux.getConteudo().equals(antigo)){
                     quantidadeSubs++;
-                    this.inicio.setConteudo(novo);
+                    aux.setConteudo(novo);
                 }
                 aux = aux.getProx();
             }
