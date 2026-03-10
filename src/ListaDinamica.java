@@ -105,7 +105,25 @@ public class ListaDinamica implements ListaOperacoes{
 
     @Override
     public int removerTodas(String elemento) {
-        return 0;
+        int qtdRmv = 0;
+        if(elemento == null || elemento.isBlank()) return qtdRmv;
+
+        if(existeInicio()){
+            No aux1 = this.inicio;
+            No aux2;
+            while(aux1.getProx() != null){
+                aux2 = aux1.getProx();
+                if(aux1.getConteudo().equals(elemento)) {
+                    aux1.setProx(null);
+                    this.inicio = aux2;
+                    qtdRmv++;
+                } else {
+                    aux1 = aux1.getProx();
+                }
+            }
+        }
+
+        return qtdRmv;
     }
 
     /**
@@ -178,9 +196,40 @@ public class ListaDinamica implements ListaOperacoes{
         return null; //Mesmo sendo impossível de chegar aqui, tive que colocar pro compilador rodar o código.
     }
 
+    /**
+     * Insere um elemento em uma posição específica da lista.
+     *
+     * @param indice Posição onde o elemento será inserido.
+     * @param elemento Elemento a ser inserido.
+     * @return true se a inserção foi realizada com sucesso, false caso contrário.
+     */
     @Override
     public boolean inserir(int indice, String elemento) {
-        return false;
+        if(!verificarIntervalo(indice) || elemento == null || elemento.isBlank()){
+            return false;
+        }
+
+        No aux = this.inicio;
+        No novoNo = new No(elemento);
+        if(indice == 0){
+            this.inicio = novoNo;
+            novoNo.setProx(aux);
+            return true;
+        } else {
+            int i = 0;
+            while (aux != null){
+
+                if(i == indice-1){
+                    novoNo.setProx(aux.getProx());
+                    aux.setProx(novoNo);
+                    return true;
+                }
+                aux = aux.getProx();
+                i++;
+            }
+        }
+
+        return false;// Mesmo não chegando aqui, tenho que retornar para poder compilar meu código
     }
 
     @Override

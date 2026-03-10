@@ -6,7 +6,12 @@ public class Main{
         ld.adicionarElemento("Júlia");
         ld.adicionarElemento("João");
         ld.adicionarElemento("João");
-        ld.substituir("João","Andrey");
+        ld.adicionarElemento("Jose");
+
+        ld.inserir(6,"Gabriel");
+
         ld.exibirElementos();
+
+
     }
 }
