@@ -10,6 +10,7 @@ public class Main{
 
         System.out.println("Elemento removido por indice: " + ld.removerPorIndice(0) );
         ld.exibirElementos();
-
+        ld.limpar();
+        ld.exibirElementos();
     }
 }

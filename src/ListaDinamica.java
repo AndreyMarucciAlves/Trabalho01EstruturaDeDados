@@ -91,7 +91,7 @@ public class ListaDinamica implements ListaOperacoes{
      * @return true se o indice estiver dentro do intervalo
      */
     private boolean verificarIntervalo(int indice){
-        return this.contar()-1 >=  indice && indice >= 0;
+        return indice >=0 && indice < this.contar();
     }
 
     /**
@@ -261,8 +261,14 @@ public class ListaDinamica implements ListaOperacoes{
         return elemento;
     }
 
+    /**
+     * Remove todos os elementos da lista, deixando-a vazia.
+     *
+     */
     @Override
-    public void limpar() {}
+    public void limpar() {
+        this.inicio = new No (null);
+    }
 
     /**
      *Retorna a última incidência do elemento buscado na lista dinâmica.
