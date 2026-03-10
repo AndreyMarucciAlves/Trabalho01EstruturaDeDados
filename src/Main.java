@@ -8,10 +8,8 @@ public class Main{
         ld.adicionarElemento("João");
         ld.adicionarElemento("Jose");
 
-        ld.inserir(6,"Gabriel");
-
+        System.out.println("Elemento removido por indice: " + ld.removerPorIndice(0) );
         ld.exibirElementos();
-
 
     }
 }

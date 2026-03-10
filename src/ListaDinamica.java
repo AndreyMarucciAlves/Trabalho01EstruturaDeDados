@@ -232,9 +232,33 @@ public class ListaDinamica implements ListaOperacoes{
         return false;// Mesmo não chegando aqui, tenho que retornar para poder compilar meu código
     }
 
+    /**
+     * Remove o elemento localizado em uma posição específica da lista.
+     *
+     * @param indice Posição do elemento a ser removido.
+     * @return Elemento removido ou null caso o índice seja inválido.
+     */
     @Override
     public String removerPorIndice(int indice) {
-        return "";
+        if(!verificarIntervalo(indice)){
+            return null;
+        }
+
+        No aux = this.inicio;
+        String elemento;
+
+        if(indice == 0){
+            elemento = this.inicio.getConteudo();
+            this.inicio = aux.getProx();
+        } else {
+            for (int i = 0; i < indice-1; i ++){
+                aux = aux.getProx();
+            }
+            elemento = aux.getProx().getConteudo();
+            aux.setProx(aux.getProx().getProx());
+        }
+
+        return elemento;
     }
 
     @Override
