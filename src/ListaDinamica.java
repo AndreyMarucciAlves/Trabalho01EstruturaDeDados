@@ -32,11 +32,11 @@ public class ListaDinamica implements ListaOperacoes{
         if(existeInicio()) {
             No aux = this.inicio;
             while(aux.getProx() != null) {
-                System.out.println("ListaDinâmica[" + indice + "] = " + aux.getConteudo());
+                System.out.print("ListaDinâmica[" + indice + "] = " + aux.getConteudo() + ", ");
                 aux = aux.getProx();
                 indice++;
             }
-            System.out.println("ListaDinâmica[" + indice + "] = " + aux.getConteudo());
+            System.out.print("ListaDinâmica[" + indice + "] = " + aux.getConteudo() + " ");
         } else {
             System.out.println("Não existem elementos na Lista Dinâmica.");
         }
@@ -121,27 +121,28 @@ public class ListaDinamica implements ListaOperacoes{
 
         if(existeInicio()){
 
+            if(this.inicio.getConteudo().equals(elemento)){
+                while(existeInicio() && this.inicio.getConteudo().equals(elemento)){
+                    if(this.inicio.getProx() == null) {
+                        this.inicio = new No(null);
+                    } else {
+                        this.inicio = this.inicio.getProx();
+                    }
+                    qtdRmv++;
+                }
+            }
+
             No aux = this.inicio;
 
             while(aux.getProx() != null){
-                exibirElementos();
-                if(this.inicio.getConteudo().equals(elemento)){
-                    this.inicio = this.inicio.getProx();
-                    aux = inicio;
-                    qtdRmv++;
-                }else if(aux.getProx().getConteudo().equals(elemento)){
+                if(aux.getProx().getConteudo().equals(elemento)){
                     aux.setProx(aux.getProx().getProx());
                     qtdRmv ++;
                 } else {
                     aux = aux.getProx();
                 }
             }
-            if(this.inicio.getConteudo().equals(elemento)){
-                this.inicio = new No(null);
-                qtdRmv++;
-            }
         }
-
         return qtdRmv;
     }
 
@@ -357,7 +358,7 @@ public class ListaDinamica implements ListaOperacoes{
      */
     @Override
     public int substituir(String antigo, String novo) {
-        if(antigo == null || antigo.isBlank() || novo == null || novo.isBlank()){
+        if(novo == null || novo.isBlank()){
             return 0;
         }
 
