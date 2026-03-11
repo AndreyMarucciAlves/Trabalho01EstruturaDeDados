@@ -1,14 +1,13 @@
 public class Main{
     static void main() {
         ListaDinamica ld = new ListaDinamica();
-        ld.adicionarElemento("João");
-        ld.adicionarElemento("Maria");
-        ld.adicionarElemento("Júlia");
+        ld.adicionarElemento("maria");
         ld.adicionarElemento("João");
         ld.adicionarElemento("João");
-        ld.adicionarElemento("Jose");
+        ld.adicionarElemento("João");
 
-        System.out.println("Elemento removido por indice: " + ld.removerPorIndice(0) );
+
+        System.out.println("Quantidade de elementos removidos: " + ld.removerTodas("João"));
         ld.exibirElementos();
         ld.limpar();
         ld.exibirElementos();

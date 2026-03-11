@@ -103,23 +103,42 @@ public class ListaDinamica implements ListaOperacoes{
         return this.contar()-1;
     }
 
+    /**
+     * Remove TODAS as ocorrências de um determinado elemento da lista.
+     *
+     * Exemplo:
+     * Lista: ["Ana", "Carlos", "Ana", "Pedro"]
+     * removerTodas("Ana")
+     * Resultado: ["Carlos", "Pedro"]
+     *
+     * @param elemento Elemento que deverá ter todas as ocorrências removidas.
+     * @return Quantidade total de elementos removidos.
+     */
     @Override
     public int removerTodas(String elemento) {
         int qtdRmv = 0;
         if(elemento == null || elemento.isBlank()) return qtdRmv;
 
         if(existeInicio()){
-            No aux1 = this.inicio;
-            No aux2;
-            while(aux1.getProx() != null){
-                aux2 = aux1.getProx();
-                if(aux1.getConteudo().equals(elemento)) {
-                    aux1.setProx(null);
-                    this.inicio = aux2;
+
+            No aux = this.inicio;
+
+            while(aux.getProx() != null){
+                exibirElementos();
+                if(this.inicio.getConteudo().equals(elemento)){
+                    this.inicio = this.inicio.getProx();
+                    aux = inicio;
                     qtdRmv++;
+                }else if(aux.getProx().getConteudo().equals(elemento)){
+                    aux.setProx(aux.getProx().getProx());
+                    qtdRmv ++;
                 } else {
-                    aux1 = aux1.getProx();
+                    aux = aux.getProx();
                 }
+            }
+            if(this.inicio.getConteudo().equals(elemento)){
+                this.inicio = new No(null);
+                qtdRmv++;
             }
         }
 
