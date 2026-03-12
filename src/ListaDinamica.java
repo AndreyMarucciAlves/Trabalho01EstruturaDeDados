@@ -95,15 +95,6 @@ public class ListaDinamica implements ListaOperacoes{
     }
 
     /**
-     * Obtém o último índice da lista dinâmica.
-     *
-     * @return o último índice da lista dinâmica.
-     */
-    private int ultimoIndiceLista(){
-        return this.contar()-1;
-    }
-
-    /**
      * Remove TODAS as ocorrências de um determinado elemento da lista.
      *
      * Exemplo:
@@ -298,10 +289,12 @@ public class ListaDinamica implements ListaOperacoes{
      */
     @Override
     public int ultimoIndiceDe(String elemento) {
-        if(elemento == null || elemento.isBlank()){
-            return -1;
-        }
         int ultimoIndiceElemento = -1;
+
+        if(elemento == null || elemento.isBlank()){
+            return ultimoIndiceElemento;
+        }
+
         if(existeInicio()){
             No aux = this.inicio;
             int i = 0;
@@ -326,10 +319,12 @@ public class ListaDinamica implements ListaOperacoes{
      */
     @Override
     public int contarOcorrencias(String elemento) {
-        if(elemento == null || elemento.isBlank()){
-            return 0;
-        }
         int ocorrencias = 0;
+
+        if(elemento == null || elemento.isBlank()){
+            return ocorrencias;
+        }
+
         if(existeInicio()){
             No aux = this.inicio;
 
@@ -358,22 +353,24 @@ public class ListaDinamica implements ListaOperacoes{
      */
     @Override
     public int substituir(String antigo, String novo) {
+        int qtdSubs = 0;
+
         if(novo == null || novo.isBlank()){
-            return 0;
+            return qtdSubs;
         }
 
-        int quantidadeSubs = 0;
+
 
         if(existeInicio()){
             No aux = this.inicio;
             while(aux != null){
                 if(aux.getConteudo().equals(antigo)){
-                    quantidadeSubs++;
+                    qtdSubs++;
                     aux.setConteudo(novo);
                 }
                 aux = aux.getProx();
             }
         }
-        return quantidadeSubs;
+        return qtdSubs;
     }
 }
