@@ -113,11 +113,13 @@ public class ListaSimples implements ListaOperacoes {
         int quantidadeElementosRemovidos = 0;
         if(elemento == null){
             System.out.println("Não é possível remover um elemento nulo.");
-        }
-        for(int i = this.lista.length -1; i >= 0; i --){
-            if(this.lista[i] != null && this.lista[i].equals(elemento)){
-                removerPorIndice(i);
-                quantidadeElementosRemovidos++;
+
+        } else {
+            for(int i = this.lista.length -1; i >= 0; i --){
+                if(this.lista[i] != null && this.lista[i].equals(elemento)){
+                    removerPorIndice(i);
+                    quantidadeElementosRemovidos++;
+                }
             }
         }
         return quantidadeElementosRemovidos;
